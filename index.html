@@ -1,139 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" 
-    rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <section class="hero">
-        <div class="container">
-            <header class="header">
-                <div class="header__container">
-                    <img class="header__logo" src="images/logo.svg" alt="logo" />
-               <div class="header_title"> <b href=""> Home</b></div>
-               <nav class="header_nav">
-                <ul>
-                    <li class="heder_nav_item"><a href="">Destinations</a></li>
-                    <li class="heder_nav_item"><a href="">About</a></li>
-                    <li class="heder_nav_item"><a href="">Parther</a></li>
-                </ul>
-            </nav>
-               <button class="header_login1">Login</button>
-               <button class="header_login2">Register</button>
-                
-         </header>
-        </div>
-            <div class="hero__iner">
-                <h1 class="title">Explore and <br/> Travel</h1>
-                <p class="hero__paragraph">Holiday finder</p>
-                <hr class="hero__line"/>
-                <class class="hero_select">
-                    <select class="hero_select1">
-                        <option>Location</option>
-                    </select>
-                    <select class="hero_select1">
-                        <option>Activity</option>
-                    </select>
-                    
-                    <select class="hero_select1">
-                        <option>Grade</option>
-                    </select>
-                    <select class="hero_select1">
-                        <option>Date</option>
-                    </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thousand Sunnny</title>
 
-                    <button class="hero__button">Explore</button>
-                </class>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/normalize.min.css" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <section class="hero container">
+      <div>
+        <header class="header">
+          <div class="header__container">
+            <div class="header__menu" onclick="toggleMenu()">
+              <img src="Images/hamburger_icon.svg" alt="Menu icon" />
             </div>
-            <div class="hero__illustration">
-                <img src="./images/thousand-01.svg" alt="Hero image" />
-              </div>
+
+            <div class="header__logo">
+              <img src="images/logo.svg" alt="logo" />
+            </div>
+
+            <nav id="nav-links" class="header__nav">
+              <ul>
+                <li class="header__nav_item"><a href="#">Home</a></li>
+                <li class="header__nav_item"><a href="#">Destinations</a></li>
+                <li class="header__nav_item"><a href="#">About</a></li>
+                <li class="header__nav_item"><a href="#">Partner</a></li>
+              </ul>
+              <button class="header__button">Login</button>
+              <button class="header__button">Register</button>
+            </nav>
+          </div>
+        </header>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__explore">
+          <h1 class="hero__title">Explore and <br />Travel</h1>
+          <p class="hero__paragraph">Holiday finder</p>
+          <hr class="hero__line" />
+          <select class="hero__explore_select">
+            <option selected disabled hidden>Location</option>
+          </select>
+          <select class="hero__explore_select">
+            <option selected disabled hidden>Activity</option>
+          </select>
+          <select class="hero__explore_select">
+            <option selected disabled hidden>Grade</option>
+          </select>
+          <select class="hero__explore_select">
+            <option selected disabled hidden>Date</option>
+          </select>
+
+          <button class="hero__button">Explore</button>
         </div>
+        <div class="hero__illustration">
+          <img src="./images/thousand-01.svg" alt="Hero image" />
+        </div>
+      </div>
     </section>
     <section class="intro">
-        <div class="container intro__container">
-          <div class="intro__illustration">
-            <img
-              src="./images/thousand-02.svg"
-              width="120%"
-              alt="Content's illustration"/>
-          </div>
+      <div class="container intro__container">
+        <div class="intro__illustration">
+          <img src="./images/thousand-02.svg" alt="Content's illustration" />
+        </div>
 
-          <div class="intro_txt">
-            <h2 class="intro__title">A new way to explore the world</h2>
-            <p class="intro__paragraph">
-              For decades travellers have reached for Lonely Planet books when
-              looking to plan and execute their perfect trip, but now, they can
-              also let Lonely Planet Experiences lead the way
-            </p>
+        <div class="intro__content">
+          <h2 class="intro__title">A new way to explore the world</h2>
+          <p class="intro__paragraph">
+            For decades travellers have reached for Lonely Planet books when
+            looking to plan and execute their perfect trip, but now, they can
+            also let Lonely Planet Experiences lead the way
+          </p>
           <button class="intro__button">Learn more</button>
         </div>
       </div>
     </section>
 
-    <section class="feature">
-        <div class="container">
-            <div class="feature_title">
-                <h2>Featured destinations</h2>
-                <p>View all ></p>
+    <section class="features">
+      <div class="container">
+        <div class="features__title">
+          <h2>Featured destinations</h2>
+          <a href="№">View all ></a>
+        </div>
+        <div class="features__list">
+          <div class="features__item">
+            <img src="./images/featur1.svg" alt="Feature 1" />
+            <div class="features__item-title">
+              <strong>Raja Ampat</strong><br /><span>Indonesia</span>
             </div>
-        </div class="feature_list" >
-        <div class="feature_item">
-            <img src="./Images/featur1.svg" alt="">
+          </div>
+          <div class="features__item">
+            <img src="./images/featur2.svg" alt="Feature 2" />
+            <div class="features__item-title">
+              <strong>Fanjingshan</strong><br /><span>China</span>
+            </div>
+          </div>
+          <div class="features__item">
+            <img src="./images/featur3.svg" alt="Feature 3" />
+            <div class="features__item-title">
+              <strong>Vevey</strong><br /><span>Switzerland</span>
+            </div>
+          </div>
+          <div class="features__item">
+            <img src="./images/featur4.svg" alt="Feature 4" />
+            <div class="features__item-title">
+              <strong>Skadar</strong>
+              <br />
+              <span>Montenegro</span>
+            </div>
+          </div>
         </div>
-        <div class="feature_item">
-            <img src="./Images/featur2.svg" alt="">
-        </div>
-        <div class="feature_item">
-            <img src="./Images/featur3.svg" alt="">
-        </div>
-        <div class="feature_item">
-            <img src="./Images/featur4.svg" alt="">
-        </div>
+        <button class="features__view-all">View All</button>
+      </div>
     </section>
 
     <section class="footer">
-        <div class="container">
-          <footer>
-              <div class="footer_logo">
-                  <img src="./Images/logo.svg" alt="logo">
-                  <p>©2020 Thousand Sunny. All rights reserved</p>
-              </div>
-              <hr/>
-              <div class="footer_web">
-                  <div class="footer_web_link">
-                      <a href="https://www.youtube.com/">
-                      <img src="./Images/logo_youtube.svg" alt="logo_youtube">
-                      </a>
-                  </div>
-                  <div class="footer_web_link">
-                      <a href="https://twitter.com/">
-                    <img src="./Images/logo_twitter.svg" alt="logo_twitter">
-                    </a>
-                </div>
-                <div class="footer_web_link">
-                    <a href="https://www.facebook.com/">
-                    <img src="./Images/logo_facebook.svg" alt="logo_facebook">
-                </a>
-                </div>
-                <div class="footer_web_link">
-                    <a href="https://www.linkedin.com/">
-                    <img src="./Images/logo_linkedin.svg" alt="logo_linkedin">
-                </a>
-                </div>
-                <div class="footer_web_link">
-                    <a href="https://www.instagram.com/">
-                    <img src="./Images/logo_instagram.svg" alt="logo_instagram">
-                </a>
-                </div>
-              </div>
-            </footer>
+      <div class="container">
+        <div class="footer__credits">
+          <img src="./images/logo.svg" alt="Logo" />
+          <p>©2020 Thousand Sunny. All rights reserved</p>
         </div>
+        <hr />
+        <div class="footer__media">
+          <div class="footer__media__link">
+            <img src="images/logo_twitter.svg" alt="Twitter logo" />
+          </div>
+          <div class="footer__media__link">
+            <img src="images/logo_facebook.svg" alt="Facebook logo" />
+          </div>
+          <div class="footer__media__link">
+            <img src="images/logo_instagram.svg" alt="Instagram logo" />
+          </div>
+          <div class="footer__media__link">
+            <img src="images/logo_linkedin.svg" alt="Linkedin logo" />
+          </div>
+          <div class="footer__media__link">
+            <img src="images/logo_youtube.svg" alt="Youtube logo" />
+          </div>
+        </div>
+      </div>
     </section>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
