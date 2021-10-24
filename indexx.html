@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab4-5</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Playfair+Display&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <header class="header container">
+        <h1 class="header__name">Plane manager</h1>
+    </header>
+    <section class="content container">
+        <div class="content__form">
+            <form id="validation">
+                <fieldset class="form__create">
+                    <legend>Create plane</legend>
+                    <p>
+                        <label for="name">Tank Volume(Li)</label>
+                        <input type="text" id="title_input" />
+                        <span class="error" id="errorTitle"></span>
+                    </p>
+                    <label for="price">Name</label>
+                    <input type="text" id="price_input" class="price" />
+                    <p class="error" id="errorPrice"></p>
+                    <p>
+                    <label for="number">Number Of Passenger</label>
+                    <input type="text" id="number_input" class="number" />
+                    <p class="error" id="errorNumber"></p>
+
+                    <button class="form__create-button" id="submit_button">
+                        Submit
+                    </button>
+                </fieldset>
+
+                <fieldset class="form__find">
+                    <legend>Find Plane</legend>
+                    <p>Items found: <span id="items_counter"> all </span></p>
+                    <p>
+                        <input type="text" id="find_input" />
+                        <span class="error" id="errorFind"></span>
+                    </p>
+                    <button class="form__find-button" id="find_button">Find</button>
+                    <button class="form__find-button-cancel" type="submit" id="cancel_find_button">
+                        Cancel
+                    </button>
+                    <br />
+                    <legend>Sort Plane</legend>
+                    <button class="sort_button" id="sort_items_asc">Lower memory</button>
+                    <button class="sort_button" id="sort_items_desc">
+                        Higher memory
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="items_list">
+            <ul id="items_container" class="items_container"></ul>
+        </div>
+
+        
+    </section>
+
+    <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>
