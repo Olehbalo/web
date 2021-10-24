@@ -12,72 +12,104 @@ const findInput = document.getElementById("find_input");
 const itemsCounter = document.getElementById("items_counter");
 const itemsSortASC = document.getElementById("sort_items_asc");
 const itemsSortDESC = document.getElementById("sort_items_desc");
+const titleInput = document.getElementById("title_input");
+const priceInput = document.getElementById("price_input");
+const errorTitle = document.getElementById("errorTitle");
+const errorPrice = document.getElementById("errorPrice");
+const errorFind = document.getElementById("errorFind");
 
-let cameras = [];
+
+let devices = [];
 
 itemsSortASC.addEventListener("click", (event) => {
   event.preventDefault();
 
-  cameras.sort((a, b) => (a.memory > b.memory) ? 1 : -1);
+  devices.sort((a, b) => (a.price > b.price) ? 1 : -1);
 
-  renderItemsList(cameras);
+  renderItemsList(devices);
 });
 
 itemsSortDESC.addEventListener("click", (event) => {
   event.preventDefault();
 
-  cameras.sort((a, b) => (a.memory < b.memory) ? 1 : -1);
+  devices.sort((a, b) => (a.price < b.price) ? 1 : -1);
 
-  renderItemsList(cameras);
+  renderItemsList(devices);
 });
 
-const addItem = ({ title, memory, zoom }) => {
-  const generatedId = () => Math.random().toString(36).substr(2, 9);
+const addItem = ({ title, price }) => {
+  const generatedId = Math.random().toString(36).substr(2, 9);
 
   const newItem = {
       id: generatedId,
       title,
-      memory,
-      zoom,
+      price,
   };
 
-  cameras.push(newItem);
+  devices.push(newItem);
 
   addItemToPage(newItem);
 };
 
 submitButton.addEventListener("click", (event) => {
+  // Prevents default page reload on submit
   event.preventDefault();
+  // №<>/#!~&$@
+  const invaidSymbols = ["№", "<", ">", "/", "|", "\\", "#", "!", "~", "&", "$", "@", ";", ".", "?", "%", "*", "₴", "`"];
 
-  const { title, memory, zoom } = getInputValues();
+  if(titleInput.value == 0) {
+      errorTitle.textContent = "Please enter a title";
+  } else if(invaidSymbols.some(symbol => titleInput.value.includes(symbol))) {
+      errorTitle.textContent = "Wrong symbols";
+  } else if(priceInput.value.includes("&nbsp;") || priceInput.value.includes("&nbsp")) {
+      errorPrice.textContent = "Anti-denys defence";
+  } else if(typeof parseFloat(priceInput.value) != 'number') {
+      errorPrice.textContent = "Please enter a valid numberrr";
+  } else if(invaidSymbols.some(symbol => priceInput.value.includes(symbol)))  {
+      errorPrice.textContent = "Wrong symbols";
+  } else if(priceInput.value.search(/[A-Za-z]/) != -1) {
+      errorPrice.textContent = "Wrong symbols";
+  } else if(priceInput.value <= 0) {
+      errorPrice.textContent = "Please enter a valid number";
+  } else {
+      const { title, price } = getInputValues();
 
-  clearInputs();
+      clearInputs();
 
-  addItem({
-      title,
-      memory: memory,
-      zoom: zoom,
-  });
+      addItem({
+          title,
+          price: price.replace(',', '.'),
+      });
+
+      errorPrice.textContent = "";
+      errorTitle.textContent = "";
+  }
 
 });
 
 findButton.addEventListener("click", (event) => {
   event.preventDefault();
-  const foundCamera = cameras
+  if(findInput.value == 0) {
+      errorFind.textContent = "What you want to find?"
+  } else {
+      const foundDevices = devices
       .filter(d => d.title.search(findInput.value) !== -1);
   
-  itemsCounter.innerHTML = `${foundCamera.length}`;
+  itemsCounter.innerHTML = `${foundDevices.length}`;
 
-  renderItemsList(foundCamera);
+  errorFind.textContent = ""; 
+
+  renderItemsList(foundDevices);
+  }
 });
 
 cancelFindButton.addEventListener("click", (event) => {
   event.preventDefault();
 
-  renderItemsList(cameras);
+  renderItemsList(devices);
 
-  itemsCounter.innerHTML = `${cameras.length}`;
+  itemsCounter.innerHTML = `${devices.length}`;
   findInput.value = "";
 });
 
-renderItemsList(cameras);
+renderItemsList(devices);
