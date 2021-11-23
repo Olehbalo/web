@@ -1,5 +1,14 @@
-import { renderItemsList } from "./dom_util.js";
-import { getAllVouchers } from "./table";
+import { deletePlane, getAllPlane, postPlane, updatePlane } from "./api.js";
+import {
+    getInputValues,
+    renderItemsList,
+    EDIT_BUTTON_PREFIX,
+    clearInputs
+} from "./dom_util.js";
+
+
+const formField = document.getElementById("item_form");
+const submitButton = document.getElementById("submit_button");
 
 const searchButton = document.getElementById("search__button");
 const clearSearchButton = document.getElementById("clear__search__button");
@@ -7,43 +16,77 @@ const searchInput = document.getElementById("search__input");
 const sortCheckbox = document.getElementById("sort__checkbox");
 const countButton = document.getElementById("count__button");
 
-let vouchers = [];
+let plane = [];
 
-export const refetchAllVouchers = () => {
-    const allVouchers = getAllVouchers();
+const onEditItem = async (e) => {
+    const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
 
-    vouchers = allVouchers.sort((a, b) => b.country.localeCompare(a.country));
+    await updatePlane(itemId, getInputValues());
 
-    renderItemsList(vouchers);
+    clearInputs();
+
+    refetchAllPlanes();
 };
 
-searchButton.addEventListener("click", () => {
-    const foundVouchers = vouchers.filter((voucher) => voucher.country.search(searchInput.value) !== -1);
+const onDeleteItem = (id) => {deletePlane(id);refetchAllPlanes()};
 
-    renderItemsList(foundVouchers);
+
+
+export const refetchAllPlanes = async () => {
+    const allPlanes = await getAllPlane();
+    
+    plane = allPlanes.sort((a, b) => b.name.localeCompare(a.name));
+
+    renderItemsList(plane, onEditItem, onDeleteItem);
+};
+
+
+
+
+submitButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    
+
+    const {  name, tank, number } = getInputValues();
+
+    clearInputs();
+
+    postPlane({
+        name, 
+        tank,
+        number
+    }).then(refetchAllPlanes);
+});
+
+searchButton.addEventListener("click", () => {
+    const foundPlanes = plane.filter(
+        (planes) => planes.name.search(searchInput.value) !== -1
+        );
+
+    renderItemsList(foundPlanes, onEditItem, onDeleteItem);
 });
 
 clearSearchButton.addEventListener('click', () => {
-    renderItemsList(vouchers);
+    renderItemsList(plane, onEditItem, onDeleteItem);
 
     searchInput.value = "";
 });
 
 sortCheckbox.addEventListener("change", function() {
     if (this.checked) {
-        const sortedVouchers = vouchers.sort(
-            (a, b) => parseInt(a.price) - parseInt(b.price));
+        const sortedPlanes = plane.sort(
+            (a, b) => parseInt(a.number) - parseInt(b.number));
         
-        renderItemsList(sortedVouchers);
+        renderItemsList(sortedPlanes, onEditItem, onDeleteItem);
     } else {
-        refetchAllVouchers();
+        refetchAllPlanes();
     }
 });
 
 countButton.addEventListener("click", () => {
-    let sum = vouchers.map(o => o.price).reduce((a, c) => { return a + c });
-    document.getElementById("total-price").innerText = sum;
+    let sum = plane.map(o => o.number).reduce((a, c) => { return a + c });
+    document.getElementById("total-number").innerText = sum;
     console.log(sum);
 });
 
-refetchAllVouchers();
+refetchAllPlanes();

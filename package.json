@@ -6,6 +6,6 @@
     "scripts": {
         "start": "npx browser-sync start --server --files ."
     },
-    "author": "Yelizaveta Dmitrenko",
+    "author": "Oleh Balo",
     "license": "ISC"
 }
