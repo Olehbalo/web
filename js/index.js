@@ -3,12 +3,14 @@ import {
     getInputValues,
     renderItemsList,
     EDIT_BUTTON_PREFIX,
+    DELETE_BUTTON_PREFIX,
     clearInputs
 } from "./dom_util.js";
 
 
 const formField = document.getElementById("item_form");
 const submitButton = document.getElementById("submit_button");
+
 
 const searchButton = document.getElementById("search__button");
 const clearSearchButton = document.getElementById("clear__search__button");
@@ -28,7 +30,12 @@ const onEditItem = async (e) => {
     refetchAllPlanes();
 };
 
-const onDeleteItem = (id) => {deletePlane(id);refetchAllPlanes()};
+const onDeleteItem = async(event) => {
+    const planeId = event.target.id.replace(DELETE_BUTTON_PREFIX, "")
+    await     deletePlane(planeId);
+
+    refetchAllPlanes();
+}
 
 
 
@@ -38,14 +45,27 @@ export const refetchAllPlanes = async () => {
     plane = allPlanes.sort((a, b) => b.name.localeCompare(a.name));
 
     renderItemsList(plane, onEditItem, onDeleteItem);
+    
 };
 
-
-
-
+const validateInput = () => { 
+var letters = /^[A-Za-z]+$/;
+if(formField.length.match(letters))
+{
+return true;
+}
+else
+{
+alert('Username must have alphabetcharactersonly');
+formField.focus();
+return false;
+}
+}
 submitButton.addEventListener("click", async (event) => {
     event.preventDefault();
-    
+    if (!validateInput()) {
+        return;
+    };
 
     const {  name, tank, number } = getInputValues();
 
