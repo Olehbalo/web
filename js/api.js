@@ -31,7 +31,7 @@ export const postPlane = (body) => baseRequest({
 });
 
 export const updatePlane = (id, body) => 
-baseRequest({ urlPath: `/${id}`, method: "PATCH", body
+baseRequest({ urlPath: `/${id}`, method: "PUT", body
 });
 
 export const deletePlane = (id) => 
